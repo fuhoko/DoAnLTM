@@ -1,0 +1,64 @@
+<% block('scripts', '<script src="/javascripts/rank.js"></script>') -%>
+<% layout('../layout/app') -%>
+
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center flex-column" style="min-height: calc(100vh - 56px)">
+    <h4>Dữ liệu điểm thi</h4>
+    <h1 class="mb-4">Tốt nghiệp THPT 2020</h1>
+    <form action="" class="form-inline">
+      <label class="mr-2">Môn thi:</label>
+      <select class="form-control shadow-none" name="subject">
+        <option value="toan">Toán</option>
+        <option value="van">Văn</option>
+        <option value="ngoai_ngu">Ngoại ngữ</option>
+        <option value="li">Lí</option>
+        <option value="hoa">Hóa</option>
+        <option value="sinh">Sinh</option>
+        <option value="su">Sử</option>
+        <option value="dia">Địa</option>
+        <option value="GDCD">GDCD</option>
+      </select>
+      <label class="mr-2 ml-4">Cụm thi:</label>
+      <select class="form-control shadow-none" name="location">
+        <option value="All" >Toàn quốc</option>
+        <% if (typeof locations !== 'undefined') { %>
+          <% locations.forEach(location => { %>
+            <option value="<%= location.cum_thi%>"><%= location.cum_thi%></option>
+        <% })} %>
+      </select>
+      
+    </form>
+    <table class="table table-bordered col-7 mt-4">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">SBD</th>
+          <th scope="col">Cụm thi</th>
+          <th scope="col">Toán</th>
+          <th scope="col">Văn</th>
+          <th scope="col">Ngoại ngữ</th>
+          <th scope="col">Lí</th>
+          <th scope="col">Hóa</th>
+          <th scope="col">Sinh</th>
+          <th scope="col">KHTN</th>
+          <th scope="col">Sử</th>
+          <th scope="col">Địa</th>
+          <th scope="col">GDCD</th>
+          <th scope="col">KHXH</th>
+        </tr>
+      </thead>
+      <tbody id="body-table-rank">
+        <% if (typeof rankingList !== 'undefined') { %>
+          <% rankingList.forEach((item, index) => { %>
+            <tr id="row-<%= index %>">
+              <th scope="row"><%= index + 1 %></th>
+              <% for (let j in item) { %>
+                <th scope="row"><%= item[j] %></th>
+              <% } %>
+            </tr> 
+          <% }) %>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>

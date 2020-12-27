@@ -1,0 +1,13 @@
+body {
+  color: #B75C00
+}
+input:focus, select:focus {
+  border-color: #B75C00 !important;
+}
+.btn-search {
+  background: #B75C00;
+  color: white;
+}
+.btn-search:focus {
+  box-shadow: 0 0 0 0.2rem rgba(183,92,0,.25);
+}

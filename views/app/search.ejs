@@ -1,0 +1,44 @@
+<% block('scripts', '<script src="/javascripts/search.js"></script>') -%>
+<% layout('../layout/app') -%>
+
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center flex-column" style="height: calc(100vh - 56px)">
+    <h4>Dữ liệu điểm thi</h4>
+    <h1 class="mb-4">Tốt nghiệp THPT 2020</h1>
+    <form class="form-inline" action="#" id="form-search">
+      <div class="form-group mr-3">
+        <input type="text" class="form-control shadow-none" id="sbd" name="sbd"
+          placeholder="Nhập số báo danh" required trim>
+      </div>
+      <button type="submit" class="btn btn-search">Tìm kiếm</button>
+    </form>
+    <div id="container-error"></div>
+    <table class="table table-bordered col-7 mt-4">
+      <thead>
+        <tr>
+          <th scope="col">SBD</th>
+          <th scope="col">Cụm thi</th>
+          <th scope="col">Toán</th>
+          <th scope="col">Văn</th>
+          <th scope="col">Ngoại ngữ</th>
+          <th scope="col">Lí</th>
+          <th scope="col">Hóa</th>
+          <th scope="col">Sinh</th>
+          <th scope="col">KHTN</th>
+          <th scope="col">Sử</th>
+          <th scope="col">Địa</th>
+          <th scope="col">GDCD</th>
+          <th scope="col">KHXH</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="row-score">
+          <% if (typeof result !== 'undefined') { %>
+            <% for (let data in result) { %>
+              <th scope="row"><%= result[data] %></th>
+          <% }} %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

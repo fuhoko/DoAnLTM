@@ -1,0 +1,35 @@
+<% block('scripts', '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>') -%>
+<% block('scripts', '<script src="/javascripts/chart.js"></script>') -%>
+<% layout('../layout/app') -%>
+
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center flex-column" style="height: calc(100vh - 56px)">
+    <h4>Dữ liệu điểm thi</h4>
+    <h1 class="mb-4">Tốt nghiệp THPT 2020</h1>
+    <form action="" class="form-inline">
+      <label class="mr-2">Môn thi:</label>
+      <select class="form-control shadow-none" name="subject">
+        <option value="toan">Toán</option>
+        <option value="van">Văn</option>
+        <option value="ngoai_ngu">Ngoại ngữ</option>
+        <option value="li">Lí</option>
+        <option value="hoa">Hóa</option>
+        <option value="sinh">Sinh</option>
+        <option value="su">Sử</option>
+        <option value="dia">Địa</option>
+        <option value="GDCD">GDCD</option>
+      </select>
+      <label class="mr-2 ml-4">Cụm thi:</label>
+      <select class="form-control shadow-none" name="location">
+        <option value="All">Toàn quốc</option>
+        <% if (typeof locations !== 'undefined') { %>
+        <% locations.forEach(location => { %>
+        <option value="<%= location.cum_thi%>"><%= location.cum_thi%></option>
+        <% })} %>
+      </select>
+    </form>
+    <div class="col-6">
+      <canvas id="chart" width="700" height="400"></canvas>
+    </div>
+  </div>
+</div>
