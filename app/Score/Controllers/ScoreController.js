@@ -26,7 +26,6 @@ const getDataLocations = async (req, res, next) => {
 const getHighestScoresByQueryParameters = async (req, res, next) => {
   const data = req.query
   const rankingList = await scoreService.getHighestScores(data)
-  console.log(rankingList)
   res.locals.rankingList = rankingList
   next()
 }
@@ -40,7 +39,6 @@ const getHighestScoresByForm = async (req, res, next) => {
 const scoreStatistics = async (req, res, next) => {
   const data = req.body
   const statisticalData = await scoreService.scoreStatistics(data)
-  console.log(statisticalData)
   res.send(statisticalData)
 }
 

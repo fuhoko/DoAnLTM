@@ -9,10 +9,14 @@ const getDataLocations = async() => {
 }
 
 const getHighestScores = async(data) => {
-  if (data.location && data.subject) {
-    return scoreRepository.getHighestScores(data)
+  let rankedOrder = ['toan', 'van', 'ngoai_ngu']
+  if (rankedOrder.indexOf(data.subject) != -1 || !data.subject) {
+    rankedOrder.splice(rankedOrder.indexOf(data.subject), 1)
   }
-  return scoreRepository.getHighestScores({location: 'All', subject: 'toan'})
+  if (data.location && data.subject) {
+    return scoreRepository.getHighestScores(data, rankedOrder)
+  }
+  return scoreRepository.getHighestScores({location: 'All', subject: 'toan'}, rankedOrder)
 }
 
 const scoreStatistics = async(data) => {

@@ -8,12 +8,13 @@ const getDataLocations = async () => {
   return knex('score').select('cum_thi').groupBy('cum_thi')
 }
 
-const getHighestScores = async (data) => {
+const getHighestScores = async (data, rankedOrder) => {
+  console.log(rankedOrder)
   if (data.location == 'All') {
-    const result = await knex.raw(`SELECT sbd, cum_thi, toan, van, ngoai_ngu, li, hoa, sinh, KHTN, su, dia, GDCD, KHXH FROM score ORDER BY cast(${data.subject} as DECIMAL(8,2)) DESC  limit 10`)
+    const result = await knex.raw(`SELECT sbd, cum_thi, toan, van, ngoai_ngu, li, hoa, sinh, KHTN, su, dia, GDCD, KHXH FROM score ORDER BY cast(${data.subject} as DECIMAL(8,2)) DESC, cast(${rankedOrder[0]} as DECIMAL(8,2)) DESC, cast(${rankedOrder[1]} as DECIMAL(8,2)) DESC limit 10`)
     return result[0];
     }
-    const result = await knex.raw(`SELECT sbd, cum_thi, toan, van, ngoai_ngu, li, hoa, sinh, KHTN, su, dia, GDCD, KHXH FROM score WHERE cum_thi = '${data.location}' ORDER BY cast(${data.subject} as DECIMAL(8,2)) DESC  limit 10`)
+    const result = await knex.raw(`SELECT sbd, cum_thi, toan, van, ngoai_ngu, li, hoa, sinh, KHTN, su, dia, GDCD, KHXH FROM score WHERE cum_thi = '${data.location}' ORDER BY cast(${data.subject} as DECIMAL(8,2)) DESC, cast(${rankedOrder[0]} as DECIMAL(8,2)) DESC, cast(${rankedOrder[1]} as DECIMAL(8,2)) DESC limit 10`)
   return result[0];
 }
 
