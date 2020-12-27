@@ -1,7 +1,11 @@
 $(document).ready(() => {
   const searchParams = new URLSearchParams(window.location.search);
-  const loc = searchParams.get('location')
-  const sbj = searchParams.get('subject')
+  let loc = searchParams.get('location')
+  let sbj = searchParams.get('subject')
+  if (loc === null) {
+    loc = 'All',
+    sbj = 'toan'
+  }
   let chart
   $('select[name="location"]').val(loc || 'All')
   $('select[name="subject"]').val(sbj || 'toan')
@@ -19,6 +23,7 @@ $(document).ready(() => {
   })
 
   function setChart(location, subject) {
+    console.log(location, subject)
     $.ajax({
       type: 'post',
       url: '/scoreStatistics',

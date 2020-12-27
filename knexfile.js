@@ -5,7 +5,12 @@ module.exports = {
       tableName: 'migrations',
     },
     client: 'mysql',
-    connection: { user: 'root', database: 'my_data' },
+    connection: {
+      host: 'sql12.freemysqlhosting.net',
+      user: 'sql12383992',
+      password: '9keUMTFUGp',
+      database: 'sql12383992'
+    },
     seeds: {
       directory: 'database/seeds'
     }
